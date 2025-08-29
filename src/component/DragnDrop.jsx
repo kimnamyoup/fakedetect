@@ -32,7 +32,11 @@ const DragnDrop = () => {
 
 
     const handleDetect = async () => {
-        if (!selectedFile) {
+        if(formData===null){
+            alert("이미지를 등록하세요")
+        }
+        else{
+            if (!selectedFile) {
             alert("딥페이크를 탐지할 이미지를 먼저 선택해주세요.");
             return;
         }
@@ -64,6 +68,8 @@ const DragnDrop = () => {
         } finally {
             setIsLoading(false); // 로딩 종료
         }
+        }
+        
     };
     const handleReset=()=>{
         setSelectedFile(null)
@@ -76,49 +82,54 @@ const DragnDrop = () => {
 
   
     return (
-        <div className="main-container">
-            <div className="detector">
+        <div className="main-container" >
+            <div className="detector" style={{
+            visibility:setResult ? 'visible' : 'hidden',
+            opacity:setResult ? '1' : '0'
+            
+            }}>
+                <h2 style={{fontSize:"2rem"}}>이미지 업로드</h2>
                 <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
+                    
                 <input {...getInputProps()} />
-
+                <img  className="icon" src="../../public/Vector.png" alt="folder" />
                 {previewUrl ? (
                     <img src={previewUrl} alt="선택한 이미지 미리보기" className="preview-image" />
                 ) : (
-                    <p>{isDragActive ? 'Drop Image' : '여기에 이미지를 드롭하거나 클릭하세요'}</p>
+                    <p>{isDragActive ? 'Drop Image' : '이미지를 끌어놓거나 파일을 선택해주세요'}</p>
                 )}
+                <button className="upload">UPLOAD FILE</button>
             </div>
             <div className="btnG">
                 <button onClick={handleDetect} className="detect-button" disabled={!selectedFile || isLoading}>
                 {isLoading ? '탐지 중...' : '탐지하기'}
             </button>
-            <button onClick={handleReset} className="reset-button" disabled={!selectedFile || isLoading} style={{
-                visibility:result ? '1':'0',
-                opacity: result ? '1':'0',
-                transition:"all .3s"
-            }}>리셋</button>
+           
             </div>
-
             </div>
             
-            
-
-
             {result && (
-                <div className="result-box">
+                <dialog className="result-box">
                     <h3>탐지 결과</h3>
                     {result.error ? (
                         <p className="result-error">{result.error}</p>
                     ) : (
                         <div className="resTxts">
+                            <img src={previewUrl} alt="선택한 이미지 미리보기" className="res-image" />
                             <p className={`result-prediction ${result.result?.toLowerCase()}`}>
-                                이미지는 <strong>{result.result === 'Fake' ? '가짜(Fake)' : '진짜(Real)'}이미지 입니다</strong> .
+                              이 이미지는 <strong>{result.result === 'Fake' ? '가짜(Fake)' : '진짜(Real)'}이미지 입니다</strong> .
                             </p>
                             <p className="result-confidence">
-                                <strong>{(result.probability * 100).toFixed(2)}%</strong>
+                                <strong>신뢰도: {(result.probability * 100).toFixed(2)}%</strong>
                             </p>
                         </div>
                     )}
-                </div>
+                    <button onClick={handleReset} className="reset-button" disabled={!selectedFile || isLoading}
+                             style={{transform:setResult ? "translate(0px)" : "translate(-7px)",
+                                    transition:"all .3s"
+                             }}
+                             >다시하기</button>
+                </dialog>
             )}
         </div>
     );
