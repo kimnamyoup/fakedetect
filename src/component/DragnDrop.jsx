@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import '../css/DragnDrop.css';
+import App from './../App';
 
 const DragnDrop = () => {
 
@@ -73,7 +74,7 @@ const DragnDrop = () => {
         }
         setPreviewUrl(null);
     }
-    const imgUrl = previewUrl ? previewUrl : "/src/asset/vfolder2.png"
+    const imgUrl = previewUrl ? previewUrl : "../public/img/vfolder2.png"
 
     return (
         <div className="main-container" >
