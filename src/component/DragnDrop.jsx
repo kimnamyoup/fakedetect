@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import '../css/DragnDrop.css';
+import '../../public/img/vfolder2.png'
 import App from './../App';
 
 const DragnDrop = () => {
@@ -74,7 +75,7 @@ const DragnDrop = () => {
         }
         setPreviewUrl(null);
     }
-    const imgUrl = previewUrl ? previewUrl : "../public/img/vfolder2.png"
+
 
     return (
         <div className="main-container" >
@@ -87,7 +88,7 @@ const DragnDrop = () => {
                 <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
 
                     <input {...getInputProps()} />
-                    <img className="icon" src={imgUrl} alt="folder" />
+                    <img className="icon" src="../../public/img/vfolder2.png" alt="folder" />
                     {previewUrl ? (
                         <img src={previewUrl} alt="선택한 이미지 미리보기" className="preview-image" />
                     ) : (
