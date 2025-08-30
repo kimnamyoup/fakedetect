@@ -73,7 +73,7 @@ const DragnDrop = () => {
         }
         setPreviewUrl(null);
     }
-
+    const imgUrl = previewUrl ? previewUrl : "/src/asset/vfolder2.png"
 
     return (
         <div className="main-container" >
@@ -86,7 +86,7 @@ const DragnDrop = () => {
                 <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
 
                     <input {...getInputProps()} />
-                    <img className="icon" src="./public/vfolder2.png" alt="folder" />
+                    <img className="icon" src={imgUrl} alt="folder" />
                     {previewUrl ? (
                         <img src={previewUrl} alt="선택한 이미지 미리보기" className="preview-image" />
                     ) : (
