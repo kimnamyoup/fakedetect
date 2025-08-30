@@ -46,7 +46,7 @@ const DragnDrop = () => {
 
         try {
 
-            const response = await fetch(' https://a97d670d9f0f.ngrok-free.app/APITest', {
+            const response = await fetch('https://5f86bac66c6d.ngrok-free.app/APITest', {
                 method: 'POST',
                 body: formData,
 
@@ -86,7 +86,7 @@ const DragnDrop = () => {
                 <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
 
                     <input {...getInputProps()} />
-                    <img className="icon" src="../../public/Vector.png" alt="folder" />
+                    <img className="icon" src="./public/vfolder2.png" alt="folder" />
                     {previewUrl ? (
                         <img src={previewUrl} alt="선택한 이미지 미리보기" className="preview-image" />
                     ) : (
