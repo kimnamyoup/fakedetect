@@ -48,7 +48,7 @@ const DragnDrop = () => {
 
         try {
 
-            const response = await fetch('https://ef46a9fc881b.ngrok-free.app/APITest', {
+            const response = await fetch('https://9fea18279d86.ngrok-free.app/APITest', {
                 method: 'POST',
                 body: formData,
 
